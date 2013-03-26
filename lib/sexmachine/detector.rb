@@ -9,6 +9,8 @@ module SexMachine
                   :greece, :russia, :belarus, :moldova, :ukraine, :armenia, :azerbaijan, :georgia, :the_stans, :turkey, :arabia, :israel, :china,
                   :india, :japan, :korea, :vietnam, :other_countries ]
 
+    attr_reader :names
+
     def initialize(opts = {})
       opts = {
         :filename => File.expand_path('../data/nam_dict.txt', __FILE__),
@@ -46,6 +48,21 @@ module SexMachine
       else
         raise "No such country: #{country}"
       end
+    end
+
+    def get_clear_gender(name)
+      name = UnicodeUtils.downcase(name) unless @case_sensitive
+
+      if @names.has_key?(name)
+        possible_genders = @names[name].keys
+        return possible_genders.first if possible_genders.size == 1
+      end
+
+      @unknown_value
+    end
+
+    def inspect
+      "<SexMachine::Detector names: #{@names.size}>"
     end
 
     private

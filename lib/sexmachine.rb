@@ -1,2 +1,2 @@
-require 'sexmachine/version'
-require 'sexmachine/detector'
+require_relative 'sexmachine/version'
+require_relative 'sexmachine/detector'
