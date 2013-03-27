@@ -57,7 +57,7 @@ module SexMachine
         possible_genders = @names[name].keys
         allowed_genders = [:male, :female]
 
-        if possible_genders.size == 1 && allowed_genders.include? possible_genders.first
+        if possible_genders.size == 1 && allowed_genders.include?(possible_genders.first)
           return possible_genders.first
         end
       end
